@@ -62,14 +62,23 @@
   nav ul a:hover { color: var(--text); text-decoration: none; }
 
   /* Hero */
-  header.hero { padding: 88px 0 56px; }
-  .eyebrow {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px; color: var(--accent); margin-bottom: 14px;
+  header.hero { padding: 96px 0 64px; }
+  h1 { font-size: clamp(34px, 6vw, 46px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 600; }
+  .lead { margin-top: 16px; font-size: 18px; color: var(--muted); max-width: 540px; }
+  .facts {
+    display: grid; grid-template-columns: 88px 1fr; gap: 6px 16px;
+    margin-top: 36px; font-size: 14.5px;
   }
-  h1 { font-size: clamp(36px, 7vw, 52px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; }
-  .lead { margin-top: 18px; font-size: 18px; color: var(--muted); max-width: 600px; }
-  .lead strong { color: var(--text); font-weight: 600; }
+  .facts dt { color: var(--faint); }
+  .facts dd { color: var(--text); }
+  .textlinks { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 32px; font-size: 15px; }
+  .textlinks a {
+    color: var(--text); font-weight: 500;
+    border-bottom: 1px solid var(--line); padding-bottom: 2px;
+    transition: border-color .15s, color .15s;
+  }
+  .textlinks a:hover { text-decoration: none; color: var(--accent); border-color: var(--accent); }
+  .textlinks .arr { color: var(--faint); font-size: 13px; margin-left: 2px; }
   .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
@@ -177,26 +186,20 @@
 
 <main class="wrap" id="top">
   <header class="hero">
-    <div class="eyebrow">Hi, I'm</div>
-    <h1>Saif Ahmed.</h1>
+    <h1>Saif Ahmed</h1>
     <p class="lead">
-      <strong>Software Engineer Intern at IBM</strong> and Computer Science student at the
-      <strong>University of Toronto</strong>. I build full-stack web apps, computer vision models,
-      and LLM-powered tools — and I enjoy turning real-world problems into clean, working software.
+      Software engineer building full-stack products and applied ML tools,
+      from booking platforms to computer vision models.
     </p>
-    <div class="links">
-      <a class="btn primary" href="mailto:saif.ahmed0263@gmail.com">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7.2L4.3 7H4v.6l8 5.4 8-5.4V7h-.3L12 12.2Z"/></svg>
-        Email me
-      </a>
-      <a class="btn" href="https://github.com/Saif-Ahh" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
-        GitHub
-      </a>
-      <a class="btn" href="https://www.linkedin.com/in/saif-ahmed-427813210/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-        LinkedIn
-      </a>
+    <dl class="facts">
+      <dt>Now</dt><dd>Software Engineer Intern, IBM</dd>
+      <dt>Studying</dt><dd>Computer Science, University of Toronto, 2027</dd>
+      <dt>Based in</dt><dd>Toronto, ON</dd>
+    </dl>
+    <div class="textlinks">
+      <a href="mailto:saif.ahmed0263@gmail.com">Email</a>
+      <a href="https://github.com/Saif-Ahh" target="_blank" rel="noopener">GitHub<span class="arr">↗</span></a>
+      <a href="https://www.linkedin.com/in/saif-ahmed-427813210/" target="_blank" rel="noopener">LinkedIn<span class="arr">↗</span></a>
     </div>
   </header>
 
@@ -208,13 +211,7 @@
       <div>
         <h3>Software Engineer Intern</h3>
         <div class="org">IBM · Markham, ON</div>
-        <p class="summary">
-          I work across the stack on IBM's AI Suite, which covers an AI-assisted coding workspace and a
-          generative media platform. My main project has been the media platform's Model Context Protocol
-          integration. I've taken it from design to production so AI assistants can use the platform's tools
-          directly. I also spend a lot of time on performance. That means rethinking how generated audio is
-          cached and shared between services, and making context retrieval in the coding workspace hold up at scale.
-        </p>
+        <p class="summary">Full-stack work on IBM&rsquo;s AI Suite. I led the generative media platform&rsquo;s MCP integration end to end and worked on caching and context retrieval at scale.</p>
         <div class="metrics">
           <span class="metric"><b>−40%</b> redundant compute</span>
           <span class="metric"><b>1M+</b> weekly requests</span>
@@ -228,13 +225,7 @@
       <div>
         <h3>Software Engineer Intern</h3>
         <div class="org">Objectway Financial · Toronto, ON</div>
-        <p class="summary">
-          For a year I worked on the backend of a busy financial dashboard, where getting things right matters
-          as much as speed. I built secure APIs and brokerage flows for trade orders and fund transfers that had
-          to stay in sync across a SQL and a NoSQL database. One of my favourite wins was in E-Transfers: the
-          authentication, balance checks and logging ran one after another, so I made them run in parallel.
-          Along the way I connected third-party services through AWS and helped run our GitLab release pipeline.
-        </p>
+        <p class="summary">Backend APIs and brokerage workflows for a high-traffic financial dashboard, where speed and correctness both mattered.</p>
         <div class="metrics">
           <span class="metric"><b>20%</b> faster E-Transfers</span>
           <span class="metric"><b>99.99%</b> data consistency</span>
@@ -248,12 +239,7 @@
       <div>
         <h3>Software Development Intern</h3>
         <div class="org">Adaptive Concepts · Toronto, ON</div>
-        <p class="summary">
-          I helped build an assistive communication platform that turns a person's speech into text, music and
-          images. I worked on the real-time side: capturing speech as it happens and generating text from it
-          in a FastAPI backend. I also made the service more resilient by adding load balancing, and wrote the
-          unit and integration tests that got us past our coverage bar.
-        </p>
+        <p class="summary">Built the real-time speech backend for an assistive platform that turns speech into text, music and images.</p>
         <div class="metrics">
           <span class="metric"><b>98.5% → 99.9%</b> availability</span>
           <span class="metric"><b>90%</b> test coverage</span>
@@ -353,11 +339,11 @@
 
   <section id="contact" class="contact">
     <h2>Contact</h2>
-    <p>I'm always open to new opportunities or just a friendly chat. The best way to reach me is by email.</p>
-    <div class="links" style="margin-top:0">
-      <a class="btn primary" href="mailto:saif.ahmed0263@gmail.com">saif.ahmed0263@gmail.com</a>
-      <a class="btn" href="https://www.linkedin.com/in/saif-ahmed-427813210/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/Saif-Ahh" target="_blank" rel="noopener">GitHub</a>
+    <p>Open to new opportunities. Email is the best way to reach me.</p>
+    <div class="textlinks" style="margin-top:0">
+      <a href="mailto:saif.ahmed0263@gmail.com">saif.ahmed0263@gmail.com</a>
+      <a href="https://www.linkedin.com/in/saif-ahmed-427813210/" target="_blank" rel="noopener">LinkedIn<span class="arr">↗</span></a>
+      <a href="https://github.com/Saif-Ahh" target="_blank" rel="noopener">GitHub<span class="arr">↗</span></a>
     </div>
   </section>
 </main>
