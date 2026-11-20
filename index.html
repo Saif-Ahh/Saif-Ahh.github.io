@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saif Ahmed — Software Engineer</title>
+<meta name="description" content="Saif Ahmed — Software Engineer Intern at IBM and Computer Science student at the University of Toronto.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232b59c3'/><text x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'>SA</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbfa;
+    --surface: #ffffff;
+    --text: #1b1d21;
+    --muted: #5d636e;
+    --faint: #8a909a;
+    --line: #e6e6e3;
+    --accent: #2b59c3;
+    --accent-soft: #eaf0fc;
+    --tag-bg: #f1f1ef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111316;
+      --surface: #181b1f;
+      --text: #e9eaec;
+      --muted: #a2a8b2;
+      --faint: #767c86;
+      --line: #2a2e34;
+      --accent: #7ea2ff;
+      --accent-soft: #1c2640;
+      --tag-bg: #22262c;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  nav .logo { font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  nav ul { list-style: none; display: flex; gap: 22px; }
+  nav ul a { color: var(--muted); font-size: 14px; font-weight: 500; }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  /* Hero */
+  header.hero { padding: 88px 0 56px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 13px; color: var(--accent); margin-bottom: 14px;
+  }
+  h1 { font-size: clamp(36px, 7vw, 52px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; }
+  .lead { margin-top: 18px; font-size: 18px; color: var(--muted); max-width: 600px; }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px; border-radius: 8px; font-size: 14px; font-weight: 500;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    transition: border-color .15s, transform .15s;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #0b1020; } }
+  .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* Sections */
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--faint); font-weight: 600; margin-bottom: 28px;
+  }
+  h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+
+  /* Experience */
+  .job { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding-bottom: 32px; }
+  .job:last-child { padding-bottom: 0; }
+  .job .when { font-size: 14px; color: var(--faint); padding-top: 2px; }
+  .job .org { color: var(--muted); font-size: 15px; margin-top: 2px; }
+  .job ul { margin-top: 10px; padding-left: 18px; color: var(--muted); font-size: 15px; }
+  .job li { margin-bottom: 6px; }
+  .job li::marker { color: var(--faint); }
+
+  /* Projects */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; display: flex; flex-direction: column; gap: 10px;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); transform: translateY(-2px); }
+  .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .card .top a { font-size: 13px; white-space: nowrap; }
+  .card p { color: var(--muted); font-size: 14.5px; flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11.5px;
+    background: var(--tag-bg); color: var(--muted); padding: 3px 8px; border-radius: 5px;
+  }
+  .stat { color: var(--text); font-weight: 600; }
+
+  .oss { background: var(--accent-soft); border-color: transparent; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: 150px 1fr; gap: 14px 20px; }
+  .skills dt { font-size: 14px; color: var(--faint); padding-top: 3px; }
+  .skills dd { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* Education */
+  .edu { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .edu .org { color: var(--muted); font-size: 15px; margin-top: 2px; }
+  .edu .when { font-size: 14px; color: var(--faint); }
+
+  /* Contact */
+  .contact p { color: var(--muted); max-width: 520px; margin-bottom: 22px; }
+
+  footer { padding: 32px 0 48px; color: var(--faint); font-size: 13px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 640px) {
+    nav ul { gap: 14px; }
+    nav ul li.hide-sm { display: none; }
+    header.hero { padding: 56px 0 40px; }
+    .job, .skills { grid-template-columns: 1fr; gap: 4px; }
+    .job { padding-bottom: 28px; }
+    .skills dd { margin-bottom: 12px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Saif Ahmed</a>
+    <ul>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li class="hide-sm"><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+  <header class="hero">
+    <div class="eyebrow">Hi, I'm</div>
+    <h1>Saif Ahmed.</h1>
+    <p class="lead">
+      <strong>Software Engineer Intern at IBM</strong> and Computer Science student at the
+      <strong>University of Toronto</strong>. I build full-stack web apps, computer vision models,
+      and LLM-powered tools — and I enjoy turning real-world problems into clean, working software.
+    </p>
+    <div class="links">
+      <a class="btn primary" href="mailto:saif.ahmed0263@gmail.com">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7.2L4.3 7H4v.6l8 5.4 8-5.4V7h-.3L12 12.2Z"/></svg>
+        Email me
+      </a>
+      <a class="btn" href="https://github.com/Saif-Ahh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/saif-ahmed-427813210/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </header>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="when">May 2026 – Present</div>
+      <div>
+        <h3>Software Engineer Intern</h3>
+        <div class="org">IBM · Markham, ON</div>
+        <ul>
+          <li>Built full-stack features for IBM's AI Suite, including AI-assisted coding and generative media platforms.</li>
+          <li>Designed a distributed pub/sub caching system that cut redundant compute for generative AI audio workflows by <span class="stat">40%</span>.</li>
+          <li>Owned the end-to-end Model Context Protocol (MCP) integration for the Generative Media platform.</li>
+          <li>Improved scalability across <span class="stat">1M+ weekly requests</span> by optimizing code context retrieval for the AI workspace.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">May 2025 – Apr 2026</div>
+      <div>
+        <h3>Software Engineer Intern</h3>
+        <div class="org">Objectway Financial · Toronto, ON</div>
+        <ul>
+          <li>Developed secure RESTful APIs with TypeScript, Node.js and Redis for a high-traffic financial dashboard.</li>
+          <li>Sped up E-Transfer processing by <span class="stat">20%</span> by parallelizing authentication, balance validation and logging.</li>
+          <li>Built brokerage workflows for trade orders and fund transfers with <span class="stat">99.99%</span> consistency across MySQL and MongoDB.</li>
+          <li>Integrated third-party APIs with AWS (S3, EC2, Lambda) and shipped through GitLab CI/CD.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Jan 2025 – Apr 2025</div>
+      <div>
+        <h3>Software Development Intern</h3>
+        <div class="org">Adaptive Concepts · Toronto, ON</div>
+        <ul>
+          <li>Developed an assistive communication platform that turns speech into text, music and images.</li>
+          <li>Built real-time speech capture and text generation backends with Python FastAPI.</li>
+          <li>Raised availability from <span class="stat">98.5% to 99.9%</span> with load balancing, and hit <span class="stat">90%</span> test coverage with PyTest and JUnit.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="top"><h3>TutorHub</h3></div>
+        <p>Full-stack platform connecting tutors and students to schedule lessons, serving <span class="stat">150+ monthly users</span>. Automated payments and billing, cutting admin overhead by 75%.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Docker</span></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Chess Analyzer</h3><a href="https://github.com/Saif-Ahh/ChessBot" target="_blank" rel="noopener">Code ↗</a></div>
+        <p>Computer vision chess analyzer that reads board positions from screenshots. A CNN classifies each square into 13 classes with <span class="stat">~93% accuracy</span>, feeding Stockfish for move suggestions.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">NumPy</span></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>FlyNext</h3><a href="https://github.com/Saif-Ahh/FlyNext" target="_blank" rel="noopener">Code ↗</a></div>
+        <p>Travel booking app for searching, booking and managing flights with real flight data. Auth, a RESTful backend and containerized deployment behind an nginx reverse proxy.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">nginx</span></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Financial Bot</h3><a href="https://github.com/Saif-Ahh/FinancialBot" target="_blank" rel="noopener">Code ↗</a></div>
+        <p>LLM chatbot that retrieves and analyzes figures from companies' 10-K filings — net income, gross margin and more — backed by a Neo4j knowledge graph.</p>
+        <div class="tags"><span class="tag">LangChain</span><span class="tag">Neo4j</span><span class="tag">OpenAI API</span><span class="tag">Streamlit</span></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Doorbell Camera</h3></div>
+        <p>Raspberry Pi doorbell camera that captures motion and uploads footage to the cloud, using GCP for motion analysis and AWS CloudFront for streaming.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">GCP</span><span class="tag">AWS</span><span class="tag">FFmpeg</span></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Parking Lot Detector</h3><a href="https://github.com/Saif-Ahh/ParkingLotDetector" target="_blank" rel="noopener">Code ↗</a></div>
+        <p>Detects parking spots in images or video, classifies them as empty or occupied, and reports available spaces and occupancy metrics.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">NumPy</span></div>
+      </article>
+
+      <article class="card">
+        <div class="top"><h3>Loan Detector</h3><a href="https://github.com/Saif-Ahh/LoanDetector" target="_blank" rel="noopener">Code ↗</a></div>
+        <p>Neural network that predicts loan status, with data cleaning, exploratory analysis and evaluation via confusion matrix and classification report.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Deep Learning</span><span class="tag">Jupyter</span></div>
+      </article>
+
+      <article class="card oss">
+        <div class="top"><h3>Endurain <span style="font-weight:400;color:var(--muted);font-size:14px">· open source</span></h3><a href="https://github.com/endurain-project/endurain" target="_blank" rel="noopener">Repo ↗</a></div>
+        <p>Contributor to a 2,000+ star self-hosted fitness tracker. Fixed a critical HTTP 500 crash in the Strava integration and added a guardrail that stops boot on malformed security config.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Docker</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Languages</dt>
+      <dd><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Ruby</span><span class="tag">SQL</span></dd>
+      <dt>Frameworks</dt>
+      <dd><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Spring Boot</span><span class="tag">FastAPI</span></dd>
+      <dt>Data &amp; ML</dt>
+      <dd><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">NumPy</span><span class="tag">LLMs</span></dd>
+      <dt>Cloud &amp; Tools</dt>
+      <dd><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Azure</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Linux</span><span class="tag">Git</span><span class="tag">GitLab CI/CD</span></dd>
+    </dl>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu">
+      <div>
+        <h3>University of Toronto</h3>
+        <div class="org">Honours B.Sc., Computer Science Major + Co-op</div>
+      </div>
+      <div class="when">Expected Dec 2027</div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>I'm always open to new opportunities or just a friendly chat. The best way to reach me is by email.</p>
+    <div class="links" style="margin-top:0">
+      <a class="btn primary" href="mailto:saif.ahmed0263@gmail.com">saif.ahmed0263@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/saif-ahmed-427813210/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/Saif-Ahh" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr">2026</span> Saif Ahmed</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
