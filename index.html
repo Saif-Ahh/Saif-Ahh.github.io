@@ -95,9 +95,14 @@
   .job:last-child { padding-bottom: 0; }
   .job .when { font-size: 14px; color: var(--faint); padding-top: 2px; }
   .job .org { color: var(--muted); font-size: 15px; margin-top: 2px; }
-  .job ul { margin-top: 10px; padding-left: 18px; color: var(--muted); font-size: 15px; }
-  .job li { margin-bottom: 6px; }
-  .job li::marker { color: var(--faint); }
+  .job .summary { margin-top: 10px; color: var(--muted); font-size: 15px; }
+  .job .metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .metric {
+    font-size: 13px; color: var(--text); background: var(--accent-soft);
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .metric b { color: var(--accent); font-weight: 600; }
+  .job .tags { margin-top: 12px; }
 
   /* Projects */
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -117,7 +122,17 @@
   }
   .stat { color: var(--text); font-weight: 600; }
 
-  .oss { background: var(--accent-soft); border-color: transparent; }
+  .oss { background: var(--accent-soft); border-color: transparent; grid-column: 1 / -1; }
+
+  .featured { grid-column: 1 / -1; display: grid; grid-template-columns: 260px 1fr; gap: 22px; align-items: center; }
+  .featured figure { margin: 0; }
+  .featured img { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--line); }
+  .featured figcaption { font-size: 12px; color: var(--faint); margin-top: 6px; }
+  .featured .body { display: flex; flex-direction: column; gap: 10px; }
+  .featured .label {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11.5px;
+    color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em;
+  }
 
   /* Skills */
   .skills { display: grid; grid-template-columns: 150px 1fr; gap: 14px 20px; }
@@ -142,6 +157,7 @@
     .job { padding-bottom: 28px; }
     .skills dd { margin-bottom: 12px; }
     .grid { grid-template-columns: 1fr; }
+    .featured { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -192,12 +208,18 @@
       <div>
         <h3>Software Engineer Intern</h3>
         <div class="org">IBM · Markham, ON</div>
-        <ul>
-          <li>Built full-stack features for IBM's AI Suite, including AI-assisted coding and generative media platforms.</li>
-          <li>Designed a distributed pub/sub caching system that cut redundant compute for generative AI audio workflows by <span class="stat">40%</span>.</li>
-          <li>Owned the end-to-end Model Context Protocol (MCP) integration for the Generative Media platform.</li>
-          <li>Improved scalability across <span class="stat">1M+ weekly requests</span> by optimizing code context retrieval for the AI workspace.</li>
-        </ul>
+        <p class="summary">
+          I work across the stack on IBM's AI Suite, which covers an AI-assisted coding workspace and a
+          generative media platform. My main project has been the media platform's Model Context Protocol
+          integration. I've taken it from design to production so AI assistants can use the platform's tools
+          directly. I also spend a lot of time on performance. That means rethinking how generated audio is
+          cached and shared between services, and making context retrieval in the coding workspace hold up at scale.
+        </p>
+        <div class="metrics">
+          <span class="metric"><b>−40%</b> redundant compute</span>
+          <span class="metric"><b>1M+</b> weekly requests</span>
+        </div>
+        <div class="tags"><span class="tag">MCP</span><span class="tag">Generative AI</span><span class="tag">Pub/Sub</span><span class="tag">Distributed caching</span><span class="tag">Instana</span></div>
       </div>
     </div>
 
@@ -206,12 +228,18 @@
       <div>
         <h3>Software Engineer Intern</h3>
         <div class="org">Objectway Financial · Toronto, ON</div>
-        <ul>
-          <li>Developed secure RESTful APIs with TypeScript, Node.js and Redis for a high-traffic financial dashboard.</li>
-          <li>Sped up E-Transfer processing by <span class="stat">20%</span> by parallelizing authentication, balance validation and logging.</li>
-          <li>Built brokerage workflows for trade orders and fund transfers with <span class="stat">99.99%</span> consistency across MySQL and MongoDB.</li>
-          <li>Integrated third-party APIs with AWS (S3, EC2, Lambda) and shipped through GitLab CI/CD.</li>
-        </ul>
+        <p class="summary">
+          For a year I worked on the backend of a busy financial dashboard, where getting things right matters
+          as much as speed. I built secure APIs and brokerage flows for trade orders and fund transfers that had
+          to stay in sync across a SQL and a NoSQL database. One of my favourite wins was in E-Transfers: the
+          authentication, balance checks and logging ran one after another, so I made them run in parallel.
+          Along the way I connected third-party services through AWS and helped run our GitLab release pipeline.
+        </p>
+        <div class="metrics">
+          <span class="metric"><b>20%</b> faster E-Transfers</span>
+          <span class="metric"><b>99.99%</b> data consistency</span>
+        </div>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Redis</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">AWS</span><span class="tag">GitLab CI/CD</span></div>
       </div>
     </div>
 
@@ -220,11 +248,17 @@
       <div>
         <h3>Software Development Intern</h3>
         <div class="org">Adaptive Concepts · Toronto, ON</div>
-        <ul>
-          <li>Developed an assistive communication platform that turns speech into text, music and images.</li>
-          <li>Built real-time speech capture and text generation backends with Python FastAPI.</li>
-          <li>Raised availability from <span class="stat">98.5% to 99.9%</span> with load balancing, and hit <span class="stat">90%</span> test coverage with PyTest and JUnit.</li>
-        </ul>
+        <p class="summary">
+          I helped build an assistive communication platform that turns a person's speech into text, music and
+          images. I worked on the real-time side: capturing speech as it happens and generating text from it
+          in a FastAPI backend. I also made the service more resilient by adding load balancing, and wrote the
+          unit and integration tests that got us past our coverage bar.
+        </p>
+        <div class="metrics">
+          <span class="metric"><b>98.5% → 99.9%</b> availability</span>
+          <span class="metric"><b>90%</b> test coverage</span>
+        </div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PyTest</span><span class="tag">JUnit</span></div>
       </div>
     </div>
   </section>
@@ -233,16 +267,24 @@
     <h2>Projects</h2>
     <div class="grid">
 
+      <article class="card featured">
+        <figure>
+          <img src="assets/chess-board-detection.jpg" width="640" height="633" loading="lazy"
+               alt="A chess board screenshot with every piece outlined by the model: black pieces in red boxes, white pieces in yellow boxes.">
+          <figcaption>Pieces detected from a screenshot: black in red, white in yellow.</figcaption>
+        </figure>
+        <div class="body">
+          <span class="label">Featured</span>
+          <div class="top"><h3>Chess Analyzer</h3><a href="https://github.com/Saif-Ahh/ChessBot" target="_blank" rel="noopener">Code ↗</a></div>
+          <p>Computer vision chess analyzer that reads board positions from screenshots. A CNN classifies each square into 13 classes with <span class="stat">~93% accuracy</span>, then hands the position to Stockfish for move suggestions. A multi-threaded pipeline keeps end-to-end latency <span class="stat">under 1.3s</span>.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">NumPy</span><span class="tag">Stockfish</span></div>
+        </div>
+      </article>
+
       <article class="card">
         <div class="top"><h3>TutorHub</h3></div>
         <p>Full-stack platform connecting tutors and students to schedule lessons, serving <span class="stat">150+ monthly users</span>. Automated payments and billing, cutting admin overhead by 75%.</p>
         <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">Docker</span></div>
-      </article>
-
-      <article class="card">
-        <div class="top"><h3>Chess Analyzer</h3><a href="https://github.com/Saif-Ahh/ChessBot" target="_blank" rel="noopener">Code ↗</a></div>
-        <p>Computer vision chess analyzer that reads board positions from screenshots. A CNN classifies each square into 13 classes with <span class="stat">~93% accuracy</span>, feeding Stockfish for move suggestions.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">NumPy</span></div>
       </article>
 
       <article class="card">
